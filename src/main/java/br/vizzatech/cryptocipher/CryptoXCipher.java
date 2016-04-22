@@ -164,7 +164,25 @@ public class CryptoXCipher {
             int val, Charset cs) {
         return new CryptoXCipher(sal, algoritmo, val, cs);
     }
-
+    
+    /**
+     * Come a exception, não recomendável
+     * @param str
+     * @return
+     */
+    @Deprecated
+    public String cryptNoException(String str)
+    {
+        try
+        {
+            return crypt(str);
+        }
+        catch (Exception e)
+        {
+            log.error("Falha ao fazer criptografia",e);
+        }
+        return str;
+    }
     /**
      * Criptografa uma String
      * 
@@ -210,6 +228,25 @@ public class CryptoXCipher {
 
         return String.copyValueOf(newStr);
     }
+    
+    /**
+     * Come a exception, não recomendável
+     * @param str
+     * @return
+     */
+    @Deprecated
+    public String decryptNoException(String str)
+    {
+        try
+        {
+            return decrypt(str);
+        }
+        catch (Exception e)
+        {
+            log.error("Falha ao remover criptografia",e);
+        }
+        return str;
+    }
 
     /**
      * Decriptografa uma string criptografada
@@ -226,5 +263,18 @@ public class CryptoXCipher {
         byte[] dec = Base64.decodeBase64(str.getBytes(this.charset));
         byte[] cc = this.decrypt.doFinal(dec);
         return this.cifraCesar(new String(cc, this.charset), Mode.DECRYPT);
+    }
+    
+    public boolean validaTexto(String texto, String cypherTexto)
+    {
+        try
+        {
+            return crypt(texto).equals(cypherTexto);
+        }
+        catch (Exception e)
+        {
+            log.error("Falha ao validar texto comum: {} com cypher: {}", texto, cypherTexto, e);
+        }
+        return false;
     }
 }
