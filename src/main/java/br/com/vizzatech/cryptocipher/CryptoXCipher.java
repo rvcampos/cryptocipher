@@ -1,4 +1,4 @@
-package br.vizzatech.cryptocipher;
+package br.com.vizzatech.cryptocipher;
 
 /*
  * =============================================================================

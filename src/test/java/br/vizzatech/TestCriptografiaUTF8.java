@@ -11,7 +11,7 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.vizzatech.cryptocipher.CryptoXCipher;
+import br.com.vizzatech.cryptocipher.CryptoXCipher;
 
 public class TestCriptografiaUTF8
 {
